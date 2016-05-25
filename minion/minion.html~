@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <title>minion</title>
+  <link rel="stylesheet" href="sass/minion.css">
+</head>
+
+<body>
+	<section class="content">
+		 <ul class="hair hair-left">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="hair hair-right">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="body">
+        </div>
+	</section>
+</body>
+</html>

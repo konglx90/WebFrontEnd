@@ -1,0 +1,11 @@
+body{
+    overflow: hidden;
+}
+
+.content {
+    margin: 40px;
+}
+
+.body{
+    
+}

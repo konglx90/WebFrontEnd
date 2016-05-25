@@ -1,0 +1,23 @@
+body{
+    overflow: hidden;
+}
+
+.content {
+    margin: 40px;
+}
+
+.body{
+    position: relative;
+    width: 180px;
+    height: 325px;
+    margin: 0 auto;
+    border-radius: 85px 85px 0 0;
+    box-shadow: inset 0 -10px 10px 3px #cc9e24; // 设置内部阴影
+    background: #fcda6d;
+    background: -webkit-gradient(linear, right top, left top,color-stop(61%, #fcda6d), color-stop(100%, #cc9e24)); 
+    background: -webkit-linear-gradient(right, #fcda6d 67%,#cc9e24 100%);
+    background:    -moz-linear-gradient(right, #fcda6d 67%,#cc9e24 100%);
+    background:     -ms-linear-gradient(right, #fcda6d 67%,#cc9e24 100%);
+    background:      -o-linear-gradient(right, #fcda6d 67%,#cc9e24 100%); 
+    background:         linear-gradient(to right, #fcda6d 67%,#cc9e24 100%);
+}

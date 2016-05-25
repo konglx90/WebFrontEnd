@@ -1,0 +1,80 @@
+.hair {
+    padding: 0;
+
+    li {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        width: 5px;
+        height: 45px;
+        margin: 10px;
+        list-style: none;
+        border: solid 2px #555;
+        border-radius: 140%;
+        z-index: 2;
+    }
+}
+
+//  左边的头发
+.hair-left {
+    li {
+        border-left: none;
+        border-bottom: none;
+
+        // 第一根头发
+        &:nth-child(1) {
+            margin: 20px 0 0 -60px;    // 控制头发位置
+            transform: rotate(-20deg); // 控制头发方向
+        }
+        // 第二根头发
+        &:nth-child(2) {
+            height: 30px;
+            margin: 45px 0 0 -75px;
+            transform: rotate(-50deg);
+        }
+        // 第三根头发
+        &:nth-child(3) {
+            height: 36px;
+            margin: 15px 0 0 -35px;
+            transform: rotate(-10deg);
+        }
+        // 第四根头发
+        &:nth-child(4) {
+            height: 26px;
+            margin: 35px 0 0 -13px;
+            transform: rotate(-20deg);
+        }
+    }
+}
+
+//  右边的头发
+.hair-right {
+    li {
+        border-right: none;
+        border-bottom: none;
+
+        // 第一根头发
+        &:nth-child(1) {
+            margin: 23px 0 0 60px;
+            transform: rotate(20deg);
+        }
+        // 第二根头发
+        &:nth-child(2) {
+            height: 30px;
+            margin: 45px 0 0 75px;
+            transform: rotate(50deg);
+        }
+        // 第三根头发
+        &:nth-child(3) {
+            height: 36px;
+            margin: 15px 0 0 35px;
+            transform: rotate(10deg);
+        }
+        // 第四根头发
+        &:nth-child(4) {
+            height: 34px;
+            margin: 20px 0 0 13px;
+            transform: rotate(20deg);
+        }
+    }
+}

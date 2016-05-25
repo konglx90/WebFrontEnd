@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<fieldset>
+    <legend>表单演示：最新Opera浏览器支持效果良好</legend>
+    <form action="" method="POST" id="form1" oninput="output.value=parseInt(range.value)">
+        <input type="text" autofocus="autofocus" required pattern="\d+" name="auto" placeholder="必填项测试" />
+        <input type="number" name="demoNumber" min="1" max="100" step="2" />
+        <input type="email" placeholder="请输入邮箱" name="mail" />
+        <input type="url" name="url" placeholder="输入正确的网址" />
+        <br />
+            日期：<input type="datetime" name="time" />
+            颜色：<input type="color" name="color" /><br />
+        <br />
+        <input type="range" min="0" max="50" step="5" name="range" value="0" />
+        <output name="output">0</output>
+        <br />
+        <input type="submit" value="提交表单" />
+    </form>
+    表单外的input标签：
+    <input type="text" form="form1" name="demo" />
+</fieldset>
+
+<canvas id="demoCanvas" width="500" height="500">
+ <p>
+   请使用支持HTML5的浏览器查看本实例
+ </p>
+</canvas>
+
+<script type="text/javascript">
+ //第一步：获取canvas元素
+ var canvasDom = document.getElementById("demoCanvas");
+ //第二步：获取上下文
+ var context = canvasDom.getContext('2d');
+        //第三步：指定绘制线样式、颜色
+ context.strokeStyle = "red";
+        //第四步：绘制矩形，只有线。内容是空的
+ context.strokeRect(10, 10, 190, 100);
+        //以下演示填充矩形。
+ context.fillStyle = "blue";
+ context.fillRect(110,110,100,100);
+    var image = new Image();//创建一张图片
+    image.src = "Images/a.png";//设置图片的路径
+    image.onload = function() {//当图片加载完成后
+     for (var i = 0; i < 10; i++) {//输出10张照片
+            //参数：（1）绘制的图片  （2）坐标x，（3）坐标y
+            context.drawImage(image, 100 + i * 80, 100 + i * 80);
+        }
+    };
+</script>
+</body>
+</html>
