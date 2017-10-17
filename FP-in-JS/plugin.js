@@ -59,18 +59,23 @@ const CHARGE_TYPES_DICT = {
     by_month: '月',
     forever: '永久',
 };
+
 const CHARGE_TYPES = Object.keys(CHARGE_TYPES_DICT);
+
 const discountType = item => item.promotion ? 'promotion' : 'charge_models';
+
 const isNotFree = (item, dType, type) => !!(item && item[dType] && item[dType][type] && item[dType][type] !== 0);
+
 const priceTemplate = (item, type) => {
     return item.promotion ?
     `<i>${parseFloat(item.promotion[type])/100}</i><span>${parseFloat(item.charge_models[type])/100}</span>` :
     parseFloat(item.charge_models[type])/100;
 }
+
 function main(item) {
     const dType = discountType(item);
     let newItem = CHARGE_TYPES
-        .filter(type => isNotFree(item, dType, type))
+        .filter(type => isNotFree(item, discountType(item), type))
         .map(type => {
             return {
                 // ...item,
