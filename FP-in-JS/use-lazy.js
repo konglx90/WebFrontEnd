@@ -12,6 +12,7 @@ const square = x => {
 const inc = x => x + 1;
 const isEven = x => x % 2 === 0;
 // Lazy()返回一个封装的对象. 在封装的对象上调用方法会返回封装的对象本身, 直到 value 方法调用为止.
+// 链式调用方法。方法链是指在函数返回值上直接调用方法的过程，在此期间不需要给返回值命名
 const result = Lazy(array).map(square).map(inc).filter(isEven).take(5).value();
 
 // Imperative
