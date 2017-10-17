@@ -36,3 +36,19 @@ const c = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 c.map(x => x * 2).filter(x => x > 6).reduce((x, y) => x + y);
 c.every(x => x <= 10); // true
 c.some(x => x > 10); // false
+
+// fliter 是有意思的
+var myString  = 'das dj 80980 asd nasjkh 8908 908';
+var words = [], count = 0;
+text = myString.split(' ');
+for (i=0; count<4, i<text.length; i++) {
+ if (!text[i].match(/[0-9]/)) {
+   words = words.concat(text[i]);
+   count++;
+} }
+console.log(words);
+var words = [];
+var words = myString.split(' ').filter(function(x){
+  return (! x.match(/[1-9]+/));
+}).slice(0,4);
+console.log(words);
