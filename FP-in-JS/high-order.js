@@ -9,7 +9,17 @@
 const reduce = (reducer, initial, arr) => {
   let acc = initial;
   for (let i = 0, length = arr.length; i < length; i++) {
-    acc = reducer(acc, arr[i]);
+    // acc = reducer(acc, arr[i]);
+    acc = reducer(acc, arr[i], i);  // have index
+  }
+  return acc;
+};
+
+const reduceRight = (reducer, initial, arr) => {
+  let acc = initial;
+  for (let i = 0, length = arr.length; i < length; i++) {
+    // acc = reducer(acc, arr[i]);
+    acc = reducer(acc, arr[arr.length - 1 - i], i);  // have index
   }
   return acc;
 };
@@ -67,3 +77,43 @@ const startsWithS = words => {
 
 startsWithS(['oops', 'gasp', 'shout', 'sun']);
 // [ 'shout', 'sun' ]
+
+// 重点介绍reduce
+
+var ratings = [2,3,1,4,5];
+// 求最大
+reduce((acc, curr) => acc > curr ? acc : curr, -Infinity, ratings);
+
+// 求最小
+reduce((acc, curr) => acc < curr ? acc : curr, Infinity, ratings);
+
+// 元素count
+lst = [1, 1, 2, 3, 2, 3, 3, 5, 6, 7, 7, 6, 5, 5, 5];
+reduce((acc, curr) => {
+    curr in acc ? acc[curr] += 1 : acc[curr] = 1
+    return acc;
+}, {}, lst);
+
+// 千分位
+const str = '1123123';
+reduce((acc, curr, index) => {
+	return ((index % 3) || index === 0 ? curr : (curr + ',')) + acc
+}, '', str.split('').reverse());
+
+reduceRight((acc, curr, index) => {
+	return ((index % 3) || index === 0 ? curr : (curr + ',')) + acc
+}, '', str.split(''));
+
+// Redux Reducer
+
+// export default function createStore(reducer, preloadedState, enhancer) {
+//
+// }
+const list = (state = [], action) => {
+    switch (action.type) {
+    case 'kzstore.site-list.fetchList':
+        return action.data;
+    default:
+        return state;
+    }
+};

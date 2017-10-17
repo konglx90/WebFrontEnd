@@ -52,3 +52,9 @@ var words = myString.split(' ').filter(function(x){
   return (! x.match(/[1-9]+/));
 }).slice(0,4);
 console.log(words);
+
+// reduce
+// 最大
+
+var ratings = [2,3,1,4,5];
+ratings.reduce((acc, curr) => acc > curr ? acc : curr);
