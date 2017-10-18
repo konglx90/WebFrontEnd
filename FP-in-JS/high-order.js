@@ -1,3 +1,4 @@
+var curry = require('lodash/curry');
 /*
 在数学和计算机科学中，高阶函数是至少满足下列一个条件的函数：
     接受一个或多个函数作为输入
@@ -44,15 +45,15 @@ const map = (
 
 // “遍历”和“过滤” 是常见的需求，可以通过高阶函数抽象出来，于是就有了map fliter 等
 
-const censor = words => filter(
-  word => word.length !== 4,
-  words
-);
-
-const startsWithS = words => filter(
- word => word.startsWith('s'),
- words
-);
+// const censor = words => filter(
+//   word => word.length !== 4,
+//   words
+// );
+//
+// const startsWithS = words => filter(
+//  word => word.startsWith('s'),
+//  words
+// );
 
 const censor = words => {
   const filtered = [];
@@ -79,6 +80,16 @@ startsWithS(['oops', 'gasp', 'shout', 'sun']);
 // [ 'shout', 'sun' ]
 
 // 重点介绍reduce
+
+// reverse
+reduce(function(acc, x){ return [x].concat(acc); }, [], [1, 2, 3, 4]);
+
+// if we want it to a function
+var reverse = curry(function(list) {
+    return reduce(function(acc, x){ return [x].concat(acc); }, [], list);
+  }
+);
+console.log(reverse([1, 2, 4, 5]), 'curry reverse');
 
 var ratings = [2,3,1,4,5];
 // 求最大

@@ -18,3 +18,18 @@ add20 = add(20)
 
 add10(1);   // 11
 add20(1);   // 21
+
+var match = curry(function(what, str) {
+  return str.match(what);
+});
+var replace = curry(function(what, replacement, str) {
+  return str.replace(what, replacement);
+});
+var filter = curry(function(f, ary) {
+  return ary.filter(f);
+});
+var map = curry(function(f, ary) {
+  return ary.map(f);
+});
+// “预加载”函数的能力，通过传递一到两个参数调用函数，就能得
+// 到一个记住了这些参数的新函数

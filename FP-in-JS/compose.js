@@ -22,6 +22,23 @@ export default function compose(...funcs) {
 add = (x, y) => x + y
 multiply2 = x => x * 2
 
+z = compose(m, add)
+z(1, 2) // 6
+
+// ---
+
+var toUpperCase = function(x) { return x.toUpperCase(); };
+var exclaim = function(x) { return x + '!'; };
+var shout = compose(exclaim, toUpperCase);
+shout("send in the clowns");
+//=> "SEND IN THE CLOWNS!"
+/* bad hard to read
+var shout = function(x){
+  return exclaim(toUpperCase(x));
+};
+*/
+// 结合律 var associative = compose(f, compose(g, h)) == compose(compose(f, g), h);
+
 const logger1 = store => next => action => {
   // 传递前, 执行的代码
   console.log('log1-1')
@@ -51,5 +68,4 @@ log1-2
 
 // ...next(next(next(action)))
 
-z = compose(m, add)
-z(1, 2) // 6
+//
