@@ -37,7 +37,7 @@ c.map(x => x * 2).filter(x => x > 6).reduce((x, y) => x + y);
 c.every(x => x <= 10); // true
 c.some(x => x > 10); // false
 
-// fliter 是有意思的
+// fliter
 var myString  = 'das dj 80980 asd nasjkh 8908 908';
 var words = [], count = 0;
 text = myString.split(' ');

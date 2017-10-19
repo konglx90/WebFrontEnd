@@ -19,8 +19,8 @@ export default function compose(...funcs) {
 }
 
 
-add = (x, y) => x + y
-multiply2 = x => x * 2
+const add = (x, y) => x + y
+const multiply2 = x => x * 2
 
 z = compose(m, add)
 z(1, 2) // 6

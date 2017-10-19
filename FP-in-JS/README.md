@@ -33,3 +33,61 @@ some every 适合去做断言，filter 过滤数组中的元素返回一个数�
 
 声明：不是说for 循环不好，其实恰恰相反，for 循环是功能强大的存在，但是做工程需要的不仅仅是功能上的实现，
 还包括代码的可读性性和可维护性，选择具有语义的的函数是更好的选择。
+
+## P-3 Features of Functional Programming in Js
+
+到底什么是函数式编程? 其实我也不太清楚，这里我只介绍一些和函数式有关的特性，在使用上不会有太多的侵入性.
+我们只需在原来使用JS的基础上记住一些简单的规则就够了.
+
+> 提醒一句，一些未曾用过的扩展点不仅浪费精力，而且可能妨碍你的工作。
+
+这些特性都是平常写代码经常会用到的
+
+### [Function is first Class](https://en.wikipedia.org/wiki/First-class_function)
+
+函数是"一等公民",完整的解释如下
+
+> This means the language supports passing functions as arguments to other functions, returning them as the values from other functions, and assigning them to variables or storing them in data structures
+
+JS 把函数和其他的数据类型一样看待，你可以把function当成参数传给另外一个function，可以返回function，可以赋值给其他变量，或者在
+其他的数据结构里存储function. 这个特性在JS代码里还是很常见的，回调，闭包都是.
+
+### [Pure function](https://en.wikipedia.org/wiki/Pure_function)
+
+>
+1. The function always evaluates the same result value given the same argument value(s). The function result value cannot depend on any hidden information or state that may change while program execution proceeds or between different executions of the program, nor can it depend on any external input from I/O devices (usually—see below).
+2. Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices (usually—see below).
+
+从定义上来说，纯函数必须要能够根据相同的输入返回相同的输出；如果函数需要跟外部事物打交道，那么就无法保证这一点了，不
+依赖外部的状态，不产生诸如IO操作等副作用对纯函数也是很重要的.
+
+### Immutable
+
+Immutable 是指不可变量, 数据从一开始创建就不可改变. 大家应该都写过类似深拷贝浅拷贝这样的函数吧。为什么要写深拷贝呢，
+因为我们担心数据不知道在某个时刻以我们不希望的形式改变了，这样我们使用该变量就会变得非常危险。但是如果是Immutable的数据
+就不会有这样的担心了.
+
+JS 里提供一些简单的函数使数据不可变 Object.freeze 就是干这个的.
+这个话题还是很大的，有兴趣的同学可以去研究一下immutable.js.
+
+### Less state and var, Compose
+
+函数式编程推崇的是通过组合不同的函数减少不必要的状态和变量, 数据在函数间流动而不需要现身.
+
+### No Side effect
+
+Js 里常见的副作用有
+
+-更改文件系统
+-往数据库插入记录
+-发送一个 http 请求
+-可变数据
+-打印/log
+-获取用户输入
+-DOM 查询
+-访问系统状态
+
+[部分数组操作](./array.js)
+
+### P-4
+函数式编程里的函数是指纯函数，
