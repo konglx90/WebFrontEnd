@@ -6,6 +6,8 @@ var items = [{
         by_day: 900,
     }
 }]
+
+// code 1 start
 var i = 0;
 if (items[i].promotion) {
     items[i].is_discount = true;
@@ -53,6 +55,12 @@ if (items[i].promotion) {
 }
 console.log(items);
 
+// 以上代码优点是清晰，不容易出bug (这点很重要)
+// 1. 但是上面的代码样板代码太多 else 里面的代码抽象一下其实可以少不少代码 比下面还少
+// 2. 不易拓展(其实实际操作起来还好，姑且当成一个缺点吧) 加一个by_year
+// 3. 不易复用
+
+// 对象保持一定的顺序
 const CHARGE_TYPES_DICT = {
     by_day: '天',
     daily_charge: '天',
@@ -72,6 +80,8 @@ const priceTemplate = (item, type) => {
     parseFloat(item.charge_models[type])/100;
 }
 
+// 理论上讲以上部分是可以复用的
+
 function main(item) {
     const dType = discountType(item);
     let newItem = CHARGE_TYPES
@@ -79,10 +89,10 @@ function main(item) {
         .map(type => {
             return {
                 // ...item,
-                is_discount: dType === 'promotion',
+                is_discount: dType === 'promotion',       // TODO to function
                 is_free: true,
                 price: priceTemplate(item, type),
-                unit: `快币/${CHARGE_TYPES_DICT[type]}`,
+                unit: `快币/${CHARGE_TYPES_DICT[type]}`,  // TODO to function
             }
         })
     return newItem.length === 0 ? {
