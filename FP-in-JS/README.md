@@ -7,7 +7,7 @@
 ## P-2 多范式
 
 Javascript 是一门多范式的语言. 你可以在Js里写出传统的命令式的代码，像C语言一样， 也可以写面向对象的代码
-当然也可以写函数式(声明式)的代码。因为JS是一门披着Java外衣的Scheme Self. 为什么?[wiki](https://en.wikipedia.org/wiki/JavaScript)
+当然也可以写函数式(声明式)的代码。因为JS是一门披着Java外衣的Scheme Self. [为什么?](https://en.wikipedia.org/wiki/JavaScript)
 
 > JavaScript was influenced by programming languages such as Self and Scheme
 
@@ -54,9 +54,8 @@ JS 把函数和其他的数据类型一样看待，你可以把function当成参
 
 ### [Pure function](https://en.wikipedia.org/wiki/Pure_function)
 
->
-1. The function always evaluates the same result value given the same argument value(s). The function result value cannot depend on any hidden information or state that may change while program execution proceeds or between different executions of the program, nor can it depend on any external input from I/O devices (usually—see below).
-2. Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices (usually—see below).
+>   The function always evaluates the same result value given the same argument value(s). The function result value cannot depend on any hidden information or state that may change while program execution proceeds or between different executions of the program, nor can it depend on any external input from I/O devices (usually—see below).
+    Evaluation of the result does not cause any semantically observable side effect or output, such as mutation of mutable objects or output to I/O devices (usually—see below).
 
 从定义上来说，纯函数必须要能够根据相同的输入返回相同的输出；如果函数需要跟外部事物打交道，那么就无法保证这一点了，不
 依赖外部的状态，不产生诸如IO操作等副作用对纯函数也是很重要的.
@@ -80,15 +79,21 @@ JS 里提供一些简单的函数使数据不可变 Object.freeze 就是干这�
 
 Js 里常见的副作用有
 
--更改文件系统
--往数据库插入记录
--发送一个 http 请求
--可变数据
--打印/log
--获取用户输入
--DOM 查询
--访问系统状态
+- 更改文件系统
+- 往数据库插入记录
+- 发送一个 http 请求
+- 可变数据
+- 打印/log
+- 获取用户输入
+- DOM 查询
+- 访问系统状态
 
 [部分数组操作](./array.js)
 
-### curry high
+### higher-order-function
+
+两者满足一个就是高阶函数
+1. 接受一个或多个函数作为输入
+2. 输出一个函数
+
+[使用高阶函数实现reduce...](./high-order.js)

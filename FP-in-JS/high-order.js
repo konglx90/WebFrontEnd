@@ -7,6 +7,7 @@ var curry = require('lodash/curry');
 
 // 实现一个reduce，接受一个reducer 函数
 
+// just like redux middleware [next store action]
 const reduce = (reducer, initial, arr) => {
   let acc = initial;
   for (let i = 0, length = arr.length; i < length; i++) {
@@ -39,7 +40,7 @@ const filter = (
 // 实现 map
 
 const map = (
-    fn, arr
+  fn, arr
 ) => reduce((acc, curr) => acc.concat(fn(curr)), [], arr);
 
 
