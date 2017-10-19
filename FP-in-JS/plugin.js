@@ -1,6 +1,7 @@
 var items = [{
-    promotion: {
+    promotion: { // may no exist
         by_day: 90,
+        // may other by_month
     },
     charge_models: {
         by_day: 900,
