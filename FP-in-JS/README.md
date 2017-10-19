@@ -126,3 +126,12 @@ Js 里常见的副作用有
 ### [plugin](./plugin.js)
 
 ## More
+
+- Category
+- Container
+- Maybe
+- IO
+- Monad
+- ...
+
+这些我都不会:-D
