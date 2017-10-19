@@ -1,5 +1,21 @@
 # Functional Programming in Javascript
 
+```
+Features
+- Function is first Class
+- Pure function
+- Immutable
+- Less state and var
+- No side effect
+- Higher-order function
+- Currying
+- Closure
+- Compose
+- Anonymous function
+- Pointfree
+...
+```
+
 ## P-1
 
 今天我要分享的主题是 Functional Programming in Javascript.
@@ -60,7 +76,7 @@ JS 把函数和其他的数据类型一样看待，你可以把function当成参
 从定义上来说，纯函数必须要能够根据相同的输入返回相同的输出；如果函数需要跟外部事物打交道，那么就无法保证这一点了，不
 依赖外部的状态，不产生诸如IO操作等副作用对纯函数也是很重要的.
 
-[look code](./pure_function.js)
+[code](./pure_function.js)
 
 ### Immutable
 
@@ -68,7 +84,7 @@ Immutable 是指不可变量, 数据从一开始创建就不可改变. 大家应
 因为我们担心数据不知道在某个时刻以我们不希望的形式改变了，这样我们使用该变量就会变得非常危险。但是如果是Immutable的数据
 就不会有这样的担心了.
 
-JS 里提供一些简单的函数使数据不可变 Object.freeze 就是干这个的.
+JS 里提供一些简单的函数使数据不可变 Object.freeze 就是干这个的.[code](./immutable.js)
 这个话题还是很大的，有兴趣的同学可以去研究一下immutable.js.
 
 ### Less state and var, Compose
@@ -90,10 +106,23 @@ Js 里常见的副作用有
 
 [部分数组操作](./array.js)
 
-### higher-order-function
+### higher-order-function reduce
 
 两者满足一个就是高阶函数
 1. 接受一个或多个函数作为输入
 2. 输出一个函数
 
 [使用高阶函数实现reduce...](./high-order.js)
+
+### curry
+
+[code](./curry.js)
+
+### compose
+
+[code](./compose.js)
+[compose 的应用](./flickr.js)
+
+### [plugin](./plugin.js)
+
+## More

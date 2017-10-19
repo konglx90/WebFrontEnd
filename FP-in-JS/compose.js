@@ -1,6 +1,7 @@
 // https://segmentfault.com/a/1190000006876228
 const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 
+// compose(f, g) === f(g())
 
 // from Redux
 
@@ -22,8 +23,12 @@ export default function compose(...funcs) {
 const add = (x, y) => x + y
 const multiply2 = x => x * 2
 
-z = compose(m, add)
+const z = compose(multiply2, add)
 z(1, 2) // 6
+
+const minus10 = x => x - 10
+const zz = compose(minus10, multiply2, add);
+zz(1, 2) // -4
 
 // ---
 

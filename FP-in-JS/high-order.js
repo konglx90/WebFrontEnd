@@ -5,9 +5,8 @@ var curry = require('lodash/curry');
     输出一个函数
 */
 
-// 实现一个reduce，接受一个reducer 函数
+// 实现一个reduce，接受一个 reducer 函数
 
-// just like redux middleware [next store action]
 const reduce = (reducer, initial, arr) => {
   let acc = initial;
   for (let i = 0, length = arr.length; i < length; i++) {
@@ -80,17 +79,15 @@ const startsWithS = words => {
 startsWithS(['oops', 'gasp', 'shout', 'sun']);
 // [ 'shout', 'sun' ]
 
-// 重点介绍reduce
+// reduce 几乎所有对数组的操作都可以使用reduce来解决
+// 我们需要做的是定义好每一个函数(表达我们的用意)
 
 // reverse
-reduce(function(acc, x){ return [x].concat(acc); }, [], [1, 2, 3, 4]);
+reduce((acc, x) => [x].concat(acc), [], [1, 2, 3, 4]);
 
 // if we want it to a function
-var reverse = curry(function(list) {
-    return reduce(function(acc, x){ return [x].concat(acc); }, [], list);
-  }
-);
-console.log(reverse([1, 2, 4, 5]), 'curry reverse');
+var reverse = (list) => reduce((acc, x) => [x].concat(acc), [], list);
+console.log(reverse([1, 2, 4, 5]), 'reverse');
 
 var ratings = [2,3,1,4,5];
 // 求最大
@@ -111,10 +108,13 @@ const str = '1123123';
 reduce((acc, curr, index) => {
 	return ((index % 3) || index === 0 ? curr : (curr + ',')) + acc
 }, '', str.split('').reverse());
+// => 1,123,123
 
+// 千分位::去掉reverse
 reduceRight((acc, curr, index) => {
 	return ((index % 3) || index === 0 ? curr : (curr + ',')) + acc
 }, '', str.split(''));
+// 1,123,123
 
 // Redux Reducer
 

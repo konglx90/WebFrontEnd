@@ -21,12 +21,12 @@ var	url	=	function	(t)	{
   return	'https://api.flickr.com/services/feeds/photos_public.gne?tags='	+	t	+	'&format=json&jsoncallback=?';
 };
 ////////////////////////////////////////////
-// var	mediaUrl	=	_.compose(_.prop('m'),	_.prop('media'));
-// var	srcs	=	_.compose(_.map(mediaUrl),	_.prop('items'));
-// var	images	=	_.compose(_.map(img),	srcs);
-// var	renderImages	=	_.compose(Impure.setHtml("body"),	images);
-// var	app	=	_.compose(Impure.getJSON(renderImages),	url);
-// app("cats");
+var	mediaUrl	=	_.compose(_.prop('m'),	_.prop('media'));
+var	srcs	=	_.compose(_.map(mediaUrl),	_.prop('items'));
+var	images	=	_.compose(_.map(img),	srcs);
+var	renderImages	=	_.compose(Impure.setHtml("body"),	images);
+var	app	=	_.compose(Impure.getJSON(renderImages),	url);
+app("cats");
 ////////////////////////////////////////////
 // $.getJSON(url('cats'), function(data) {
 //   var items = data.items;
@@ -36,6 +36,7 @@ var	url	=	function	(t)	{
 //   }
 //   Impure.setHtml('body', images);
 // })
+// 函数式中间你得到的是可以复用和自由组合的函数，而不是像items images这样的临时变量
 /////////////////////////////////////////////
 // $.getJSON(url('cats')).then((data) => {
 //   Impure.setHtml('body', data.items.map(i => img(i.media.m)));
@@ -45,9 +46,9 @@ var	url	=	function	(t)	{
 //	map	的组合律
 ///////// var	law	=	compose(map(f),	map(g))	==	map(compose(f,	g));
 // 循环一次
-var	mediaUrl	=	_.compose(_.prop('m'),	_.prop('media'));
-var	mediaToImg	=	_.compose(img,	mediaUrl);
-var	images	=	_.compose(_.map(mediaToImg),	_.prop('items'));
-var	renderImages	=	_.compose(Impure.setHtml("body"),	images);
-var	app	=	_.compose(Impure.getJSON(renderImages),	url);
-app("cats");
+// var	mediaUrl	=	_.compose(_.prop('m'),	_.prop('media'));
+// var	mediaToImg	=	_.compose(img,	mediaUrl);
+// var	images	=	_.compose(_.map(mediaToImg),	_.prop('items'));
+// var	renderImages	=	_.compose(Impure.setHtml("body"),	images);
+// var	app	=	_.compose(Impure.getJSON(renderImages),	url);
+// app("cats");
