@@ -3,6 +3,8 @@ const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 
 // compose(f, g) === f(g())
 
+// sequence(g, f) === f(g())
+
 // from Redux
 
 export default function compose(...funcs) {
