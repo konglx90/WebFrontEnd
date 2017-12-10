@@ -1,4 +1,5 @@
 // https://segmentfault.com/a/1190000006876228
+// 这个只能处理单参数
 const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 
 // compose(f, g) === f(g())
@@ -7,7 +8,7 @@ const compose = (...fns) => x => fns.reduceRight((v, f) => f(v), x);
 
 // from Redux
 
-export default function compose(...funcs) {
+function compose(...funcs) {
   if (funcs.length === 0) {
     return arg => arg
   }
@@ -76,3 +77,34 @@ log1-2
 // ...next(next(next(action)))
 
 //
+
+//
+
+Function.prototype.compose = function(prevFunc) {
+  var nextFunc = this;
+  return function() {
+    return nextFunc.call(this,prevFunc.apply(this,arguments));
+  }
+}
+function function1(a){return a + ' 1';}
+function function2(b){return b + ' 2';}
+function function3(c){return c + ' 3';}
+var composition = function3.compose(function2).compose(function1);
+console.log( composition('count') ); // returns 'count 1 2 3'
+
+function floorSqrt1(num) {
+  var sqrtNum = Math.sqrt(num);
+  var floorSqrt = Math.floor(sqrtNum);
+  var stringNum = String(floorSqrt);
+  return stringNum;
+}
+function floorSqrt2(num) {
+  return String(Math.floor(Math.sqrt(num)));
+}
+function floorSqrt3(num) {
+  return [num].map(Math.sqrt).map(Math.floor).toString();
+}
+var floorSqrt4 = String.compose(Math.floor).compose(Math.sqrt);
+var floorSqrt5 = Math.sqrt.sequence(Math.floor).sequence(String);
+
+floorSqrt1(17); // Returns: 4
