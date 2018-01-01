@@ -1,27 +1,17 @@
+const dateTimeFromNow = (timestamp) => {
 
-
-const todayShiftDays = (amount=0, date=new Date()) => {
-    const [
-      tzOff,
-      d
-    ] = [
-      date.getTimezoneOffset() * 60 * 1000,
-      new Date()
-    ];
-
-    let [t, tzOff2] = [
-      date.getTime()
-    ]
-
-    t += (1000 * 60 * 60 * 24) * amount;
-    d.setTime(t);
-
-    tzOff2 = d.getTimezoneOffset() * 60 * 1000;
-    if (tzOff != tzOff2) {
-      let diff = tzOff2 - tzOff;
-      t += diff;
-      d.setTime(t);
+    const toTwo = (num) => {
+        return ('00' + String(num)).slice(-2);
     }
 
-    return d
+    const now = new Date().getTime();
+
+    const interval = dateTime - now;
+    const intervalDay = interval / 1000 / 3600 / 24;
+
+    const intervalHour = intervalDay % 1 * 24;
+    const intervalMin = intervalHour % 1 * 60;
+    const intervalSec = intervalMin % 1 * 60;
+
+    return `${parseInt(intervalDay)}天 ${intervalHour}:${intervalMin}:${intervalSec}`;
 }

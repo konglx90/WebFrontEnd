@@ -145,25 +145,21 @@ format time to 'YYYY-MM-DD' or other format you define.
 
 ```js
 const formatTime = (time, format='YYYY-MM-DD') => {
-    try {
-      const toTwo = (num) => {
-          return ('00' + String(num)).slice(-2);
-      }
-      const year = time.getFullYear();
-      const month = toTwo(time.getMonth() + 1);
-      const day = toTwo(time.getDate());
-      const hour = toTwo(time.getHours());
-      const min = toTwo(time.getMinutes());
-      const sec = toTwo(time.getSeconds());
-      return format.replace('YYYY', year)
-          .replace('MM', month)
-          .replace('DD', day)
-          .replace('HH', hour)
-          .replace('mm', min)
-          .replace('ss', sec);
-    } catch(e) {
-      throw new Error('format must be a string.');
+    const toTwo = (num) => {
+        return ('00' + String(num)).slice(-2);
     }
+    const year = time.getFullYear();
+    const month = toTwo(time.getMonth() + 1);
+    const day = toTwo(time.getDate());
+    const hour = toTwo(time.getHours());
+    const min = toTwo(time.getMinutes());
+    const sec = toTwo(time.getSeconds());
+    return format.replace('YYYY', year)
+        .replace('MM', month)
+        .replace('DD', day)
+        .replace('HH', hour)
+        .replace('mm', min)
+        .replace('ss', sec);
 }
 
 ```
@@ -177,6 +173,45 @@ time = formatTime(new Date(), 'YYYY'); // => 2018
 
 const template = 'YYYY年，北京雾霾.'
 time = formatTime(new Date(), template); // 2018年，北京雾霾.
+```
+
+</details>
+
+
+### time
+
+```js
+/**
+* 格式化输出一个dateTime到now的时间差
+* @param {Number} timestamp 时间戳
+* @return {String} 一个格式化的时间 xx天 xx:xx:xx
+*/
+const dateTimeFromNow = (timestamp) => {
+
+    const toTwo = (num) => {
+        return ('00' + String(num)).slice(-2);
+    }
+
+    const nowTimestamp = new Date().getTime();
+
+    const interval = Math.abs(timestamp - nowTimestamp);
+    const intervalDay = interval / 1000 / 3600 / 24;
+
+    let intervalHour = intervalDay % 1 * 24;
+    let intervalMin = intervalHour % 1 * 60;
+    let intervalSec = intervalMin % 1 * 60;
+
+    return `${toTwo(parseInt(intervalDay))}天 ${toTwo(parseInt(intervalHour))}:${toTwo(parseInt(intervalMin))}:${toTwo(parseInt(intervalSec))}`;
+}
+
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+const beforeTimestamp = 1514818108448;
+dateTimeFromNow(beforeTimestamp);  // => 00天 00:01:20
 ```
 
 </details>
