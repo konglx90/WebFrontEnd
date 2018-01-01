@@ -201,10 +201,12 @@ const dateTimeFromNow = (timestamp) => {
     let intervalMin = intervalHour % 1 * 60;
     let intervalSec = intervalMin % 1 * 60;
 
-    return `${toTwo(parseInt(intervalDay))}天 \
-               ${toTwo(parseInt(intervalHour))}: \
-               ${toTwo(parseInt(intervalMin))}: \
-               ${toTwo(parseInt(intervalSec))}`;
+    return [
+        `${toTwo(parseInt(intervalDay))}天 `,
+        `${toTwo(parseInt(intervalHour))}:`,
+        `${toTwo(parseInt(intervalMin))}:`,
+        `${toTwo(parseInt(intervalSec))}`
+    ].join('');
 }
 
 ```
