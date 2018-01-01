@@ -1,4 +1,4 @@
-## basic javascript code
+## Basic javascript code
 
 ### create request types when using vuex or redux
 
