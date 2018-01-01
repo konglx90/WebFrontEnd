@@ -220,3 +220,39 @@ dateTimeFromNow(beforeTimestamp);  // => 00天 00:01:20
 ```
 
 </details>
+
+### cut off string
+
+Cut off string with a aim length(default 24),
+if character's charCode > 128: will count be 2.
+
+```js
+/**
+* cut off string
+* @param {String} str str will be cut
+* @param {String} aimLength
+* @param {String} suffi
+* @return {String}
+*/
+export function cutOffString (str='', aimLength=24, suffix='...') {
+    let realLength = 0,
+        len = str.length,
+        needLength = 0,
+        needStr = '',
+        charCode = -1;
+
+    for (let i = 0; i < len; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) {
+            realLength += 1;
+        } else {
+            realLength += 2;
+        }
+        needLength = i;
+        if (realLength > aimLength) break;
+    }
+    needStr = realLength <= aimLength ? str : str.slice(0, needLength) + suffix;
+    return needStr;
+}
+
+```

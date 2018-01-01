@@ -1,17 +1,27 @@
-const dateTimeFromNow = (timestamp) => {
+/**
+* 将字符串截成最多 24 字符的串，中文算 2 个字符，并带上后缀
+* @param {String} str 需要截取的字符串
+* @param {String} aimLength 目标长度
+* @param {String} suffix 后缀
+* @return {String}
+*/
+export function cutOffString (str='', aimLength=24, suffix='...') {
+    let realLength = 0,
+        len = str.length,
+        needLength = 0,
+        needStr = '',
+        charCode = -1;
 
-    const toTwo = (num) => {
-        return ('00' + String(num)).slice(-2);
+    for (let i = 0; i < len; i++) {
+        charCode = str.charCodeAt(i);
+        if (charCode >= 0 && charCode <= 128) {
+            realLength += 1;
+        } else {
+            realLength += 2;
+        }
+        needLength = i;
+        if (realLength > aimLength) break;
     }
-
-    const now = new Date().getTime();
-
-    const interval = dateTime - now;
-    const intervalDay = interval / 1000 / 3600 / 24;
-
-    const intervalHour = intervalDay % 1 * 24;
-    const intervalMin = intervalHour % 1 * 60;
-    const intervalSec = intervalMin % 1 * 60;
-
-    return `${parseInt(intervalDay)}天 ${intervalHour}:${intervalMin}:${intervalSec}`;
+    needStr = realLength <= aimLength ? str : str.slice(0, needLength) + suffix;
+    return needStr;
 }
