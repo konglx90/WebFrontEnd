@@ -302,3 +302,31 @@ $('div').click(debounce(() => { console.log(new Date().getSeconds()); }, 2000))
 ```
 
 </details>
+
+### get value from href query
+
+```js
+/**
+* 解析url参数
+* @param {String} name 参数名
+* @return {String} 值
+*/
+const getQueryString = (name) => {
+    const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+    const r = window.location.search.substr(1).match(reg)
+    if (r != null) return window.decodeURI(r[2])
+
+    return undefined;
+}
+
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+// open Link https://www.kuaizhan.com/kzweb/v1/page-edit?page_id=6764368808
+getQueryString('page_id') // => 6764368808
+```
+
+</details>
