@@ -65,7 +65,7 @@ function extend (target) {
 var version = 9,
     score = 2000,
     // replace with your session_id here
-    session_id = '/oQKlrYv5xdvFTiILSqs1GYNk7MPUZmXKyMTNo78zlxaUkQ1DJ89rXNUBMxzTYg5VG15GI9+j2lqs3nc9ik+UxRPUmQCYNfHWf1uGwMPyeulOwRd+sT7y+aco4KixOMVRXwT3slpwdpFPEG0gcjMWA=='
+    session_id = 'C/UZafpd9BM1AZccr08iKJ7k/QA5ugi+wrmj5nTs9xJeFvMz92hECprGGN6QmpUqiTS5L6k0pr9JvQmy19qoHS1Kk2Da3EvaSwWl6s8SEEoexTwVhy7ZiiTMDDOda7DkGRrgI2XyAyxNClgcIrhOQA=='
 
 var headers = {
     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_1 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C153 MicroMessenger/6.6.1 NetType/WIFI Language/zh_CN',
