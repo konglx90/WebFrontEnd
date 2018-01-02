@@ -234,7 +234,7 @@ if character's charCode > 128: will count be 2.
 * @param {String} suffi
 * @return {String}
 */
-export function cutOffString (str='', aimLength=24, suffix='...') {
+const cutOffString = (str='', aimLength=24, suffix='...') => {
     let realLength = 0,
         len = str.length,
         needLength = 0,
@@ -256,3 +256,49 @@ export function cutOffString (str='', aimLength=24, suffix='...') {
 }
 
 ```
+
+<details>
+<summary>Examples</summary>
+
+```js
+const str = '某些场景下，比如响应鼠标移动或者窗口大小调整的事件。';
+cutOffString(str);  // => 某些场景下，比如响应鼠标...
+```
+
+</details>
+
+### debounce
+
+想象每天上班大厦底下的电梯。把电梯完成一次运送，类比为一次函数的执行和响应。假设电梯有两种运行策略 throttle 和 debounce ，超时设定为15秒，不考虑容量限制。
+
+throttle 策略的电梯。保证如果电梯第一个人进来后，15秒后准时运送一次，不等待。如果没有人，则待机。
+debounce 策略的电梯。如果电梯里有人进来，等待15秒。如果又人进来，15秒等待重新计时，直到15秒超时，开始运送。
+[wiki](https://blog.coding.net/blog/the-difference-between-throttle-and-debounce-in-underscorejs)
+
+```js
+const debounce = (func, wait, immediate) => {
+    var timeout;
+    return function() {
+        var context = this, args = arguments;
+        var later = function() {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+};
+
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+$('div').click(() => { console.log(new Date().getSeconds()); });
+$('div').click(debounce(() => { console.log(new Date().getSeconds()); }, 2000))
+```
+
+</details>
