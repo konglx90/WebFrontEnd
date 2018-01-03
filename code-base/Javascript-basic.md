@@ -31,3 +31,29 @@ const isFunction = (fn) => {
 }
 
 ```
+
+### removeDuplicatedItem
+
+```js
+// 数组去重
+const removeDuplicatedItem = (arr) => {
+    var ret = [];
+    for (var i = 0, j = arr.length; i < j; i++) {
+        if (ret.indexOf(arr[i]) === -1) {
+            ret.push(arr[i]);
+        }
+    }
+    return ret;
+}
+
+```
+
+### removeItem
+
+```js
+// 删除数组中的某个元素
+const removeItem = (arr, item) => {
+    return arr.filter(x => x !== item)
+}
+
+```

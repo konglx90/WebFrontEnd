@@ -396,3 +396,52 @@ addQueryForUrl('key1', 'value1') // => http://www.kuaizhan.com/?xx=value&key=val
 ```
 
 </details>
+
+### cache by local Storage
+
+Cache by localStorage sessionStorage
+
+
+[localStorage wiki](http://www.epubit.com.cn/book/onlinechapter/38198)
+> 我又进行了另一个基准测试（http://jsperf.com/localstorage-string-size-retrieval）来检验我的新结论，最好尽可能地减少读取数据的次数。和此前的基准测试结果类似，在大多数浏览器中，读取100个字符10次比一次读取10 000字符慢90%左右.
+
+> 鉴于此，从localStorage读取数据的最佳策略是使用尽可能少的键值，存储尽可能多的数据。因为读取10个字符和读取2000个字符所需时间大致是相同的，所以你应该尝试把尽可能多的数据保存为一个键值对应的值。每次调用getItem()（或从localStorage读取属性）都会增加时耗，所以一定要确保每次访问读取数据最大化。对于任何一个变量或对象属性，你越快将它读取到内存，后续的所有操作也会越快.
+
+```js
+const generateCacheApi = (engine, key, defaultExpire = 7 * 24 * 3600) => {
+    return {
+        set: (data, expire = defaultExpire) => {
+            const _data = {
+                data,
+                expire,
+                time: new Date().getTime(),
+            };
+            return engine.setItem(key, JSON.stringify(_data));
+        },
+        get: () => {
+            const res = engine.getItem(key);
+            if (!res) {
+                return null;
+            }
+            let { data, time, expire} = JSON.parse(res);
+            const now = new Date().getTime();
+            if (now - time > expire) {
+                return null;
+            }
+            return data;
+        }
+    }
+}
+
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+const storage = generateCacheApi(window.localStorage, 'key');
+storage.set({a: 'a', b: 'b'});
+storage.get(); // => {a: 'a', b: 'b'}
+```
+
+</details>
