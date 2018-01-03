@@ -63,9 +63,9 @@ function extend (target) {
 
 
 var version = 9,
-    score = 2000,
+    score = 1314,
     // replace with your session_id here
-    session_id = 'C/UZafpd9BM1AZccr08iKJ7k/QA5ugi+wrmj5nTs9xJeFvMz92hECprGGN6QmpUqiTS5L6k0pr9JvQmy19qoHS1Kk2Da3EvaSwWl6s8SEEoexTwVhy7ZiiTMDDOda7DkGRrgI2XyAyxNClgcIrhOQA=='
+    session_id = 'D+n+JCysyYFk/b7chT6lj74tp3B1vbCdL3D+hI2BrgToWrapabKW1HNZk/kvCvuTWVXS3QsrkXx7ICVVLFIMG3WUTvCbT+1I7M45SIL2MHlCawQ1NxLCDS8VicRWlWqNSSv+2p8ZwPTO20H0WTO8vw=='
 
 var headers = {
     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_1 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C153 MicroMessenger/6.6.1 NetType/WIFI Language/zh_CN',
@@ -90,7 +90,7 @@ request({
     json: true,
     body: base_req
 }).then(function (response) {
-    // console.log(path, response)
+    console.log(path, response);
 })
 
 path = 'wxagame_getfriendsscore'

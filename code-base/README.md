@@ -332,3 +332,67 @@ getQueryString('page_id') // => 6764368808
 ```
 
 </details>
+
+### add query for url
+
+Add queries for url brushless.
+
+```js
+/**
+* 为url无刷新添加query
+* @param {String} name 参数名
+* @param {String} {Number} value 参数名
+* @return {String} newUrl 新的url
+*/
+const addQueryForUrl = (name, value) => {
+    const oldUrl = window.location.href
+    const newUrl = funcUrl(name, value)
+
+    if (oldUrl !== newUrl) {
+        window.history.pushState({}, 0, newUrl)
+    }
+    return newUrl
+}
+
+/**
+* funcUrl()获取完整search值(不包含问号)
+* funcUrl(name,value) 将search中name的值设置为value,并返回完整url
+* 返回内容如 http://www.a.com/list/2.html?page=2&color=4&size=3#pi
+*/
+const funcUrl = (name, value) => {
+    var loca = window.location;
+    var baseUrl = loca.origin + loca.pathname + "?";
+    var query = loca.search.substr(1);
+    var hash = loca.hash;
+    if (name === undefined || value === undefined) { return baseUrl + hash };
+    var url;
+    if (query === "") {
+        // 如果没有 search 值,则返回追加了参数的 url
+        url = baseUrl + name + "=" + value + hash;
+    } else {
+        // 如果有 search 值,则在其中修改对应的值,并且去重,最后返回 url
+        var obj = {};
+        var arr = query.split("&");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].split("=");
+            obj[arr[i][0]] = arr[i][1];
+        };
+        obj[name] = value;
+        url = baseUrl + JSON.stringify(obj).replace(/[\"\{\}]/g,"").replace(/\:/g,"=").replace(/\,/g,"&") + hash;
+    }
+    return url;
+}
+
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+// open Link https://www.kuaizhan.com
+addQueryForUrl('key', 'value') // => http://www.kuaizhan.com/?key=value and change location.href
+addQueryForUrl('key', 'value') // => http://www.kuaizhan.com/?key=value no change
+addQueryForUrl('key1', 'value1') // => http://www.kuaizhan.com/?xx=value&key=value&key1=value1
+```
+
+</details>
