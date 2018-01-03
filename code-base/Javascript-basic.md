@@ -57,3 +57,10 @@ const removeItem = (arr, item) => {
 }
 
 ```
+
+### includes
+
+```js
+const includes = (arr, value) => arr.indexOf(value) > -1;
+
+```
