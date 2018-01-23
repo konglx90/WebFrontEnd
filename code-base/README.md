@@ -408,7 +408,7 @@ Cache by localStorage sessionStorage
 > 鉴于此，从localStorage读取数据的最佳策略是使用尽可能少的键值，存储尽可能多的数据。因为读取10个字符和读取2000个字符所需时间大致是相同的，所以你应该尝试把尽可能多的数据保存为一个键值对应的值。每次调用getItem()（或从localStorage读取属性）都会增加时耗，所以一定要确保每次访问读取数据最大化。对于任何一个变量或对象属性，你越快将它读取到内存，后续的所有操作也会越快.
 
 ```js
-const generateCacheApi = (engine, key, defaultExpire = 7 * 24 * 3600) => {
+const generateCacheApi = (engine, key, defaultExpire = 7 * 24 * 3600 * 1000) => {
     return {
         set: (data, expire = defaultExpire) => {
             const _data = {
@@ -445,3 +445,103 @@ storage.get(); // => {a: 'a', b: 'b'}
 ```
 
 </details>
+
+### timeoutify
+
+```js
+const timeoutify = (fn,delay) => {
+	var intv = setTimeout(() => {
+			intv = null;
+			fn( new Error( "Timeout!" ) );
+		}, delay )
+	;
+
+	return () => {
+		// timeout hasn't happened yet?
+		if (intv) {
+			clearTimeout( intv );
+			fn.apply( this, [ null ].concat( [].slice.call( arguments ) ) );
+		}
+	};
+}
+
+```
+
+### asyncify
+
+```js
+function asyncify(fn) {
+	var orig_fn = fn,
+		intv = setTimeout( function(){
+			intv = null;
+			if (fn) fn();
+		}, 0 )
+	;
+
+	fn = null;
+
+	return function() {
+		// firing too quickly, before `intv` timer has fired to
+		// indicate async turn has passed?
+		if (intv) {
+			fn = orig_fn.bind.apply(
+				orig_fn,
+				// add the wrapper's `this` to the `bind(..)`
+				// call parameters, as well as currying any
+				// passed in parameters
+				[this].concat( [].slice.call( arguments ) )
+			);
+		}
+		// already async
+		else {
+			// invoke original function
+			orig_fn.apply( this, arguments );
+		}
+	};
+}
+
+```
+
+<details>
+<summary>Examples</summary>
+
+```js
+function result(data) {
+	console.log( a );
+}
+
+var a = 0;
+
+// we don't known ajax are async?
+ajax( "..pre-cached-url..", asyncify( result ) );
+a++;
+```
+
+</details>
+
+### Error Handling
+
+```js
+function foo() {
+	setTimeout( function(){
+		baz.bar();
+	}, 100 );
+}
+
+try {
+	foo();
+	// later throws global error from `baz.bar()`
+}
+catch (err) {
+	// never gets here
+}
+```
+
+### Single Value to more in Promise
+
+[wiki](https://github.com/getify/You-Dont-Know-JS/blob/master/async%20%26%20performance/ch3.md#single-value)
+
+```js
+// 还蛮有趣的
+
+```
