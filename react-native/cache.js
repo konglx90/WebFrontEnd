@@ -1,7 +1,18 @@
+
+/**
+ * 基于 AsyncStorage 做持久化存储、缓存
+ */
 import { AsyncStorage } from 'react-native';
 
+/**
+ * 每天 86400000 毫秒
+ */
 const MILLISECONDS_EACH_DAY = 24 * 60 * 60 * 1000;
 
+/**
+ * TODO to enums
+ * Keys of AsyncStorage item
+ */
 export const Keys = {
     CITY_CIRCLES: 'city_circles',
     SUBWAY_CIRCLES: 'subway_circles',
@@ -12,6 +23,14 @@ export const Keys = {
     SEARCH_HISTORY: 'search_history'
 };
 
+/**
+ * Return cache Api by use store key
+ *
+ *
+ * @param {String} key
+ * @param {Number} defaultExpire
+ * @return {object}
+ */
 const generateCacheApi = (key, defaultExpire = 7 * MILLISECONDS_EACH_DAY) => {
     return {
         set: (data, expire = defaultExpire) => {
@@ -28,7 +47,7 @@ const generateCacheApi = (key, defaultExpire = 7 * MILLISECONDS_EACH_DAY) => {
                     return null;
                 }
 
-                let { data, time, expire} = JSON.parse(res);
+                let { data, time, expire } = JSON.parse(res);
 
                 // expire is null means never Expired
                 if (expire === null) {
