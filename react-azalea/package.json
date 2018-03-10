@@ -1,0 +1,27 @@
+{
+  "name": "react-azalea",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "ajv-keywords": "^3.1.0",
+    "flow-bin": "^0.67.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "flow": "flow"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://news-at.zhihu.com",
+      "headers": {
+        "host": "news-at.zhihu.com"
+      }
+    }
+  }
+}
