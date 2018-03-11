@@ -3,16 +3,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { agent } from './api';
+// import { agent } from './api';
+
+import SetStateTest from './react-feature-test/SetState';
 
 class App extends Component<{}> {
+
   componentDidMount() {
-      agent.News.getLastest();
-      console.log('ssss');
+    // agent.News.getLastest();
   }
 
   hello = (n: number) => {
-    console.log(n);
     return n * 2;
   }
 
@@ -23,9 +24,7 @@ class App extends Component<{}> {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <SetStateTest />
       </div>
     );
   }
