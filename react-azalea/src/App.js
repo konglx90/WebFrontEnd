@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.less';
 // import { agent } from './api';
 
-import SetStateTest from './react-feature-test/SetState';
+import DomDiff from './ReactFeatureTest/DomDiff';
 
 class App extends Component<{}> {
 
@@ -20,11 +20,7 @@ class App extends Component<{}> {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <SetStateTest />
+        <DomDiff />
       </div>
     );
   }

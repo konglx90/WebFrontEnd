@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import './styles.less';
 
 function createComponent(name) {
-  class _MyNode extends React.Component{
+  class _MyNode extends Component{
     constructor(props) {
       super(props);
       console.log(name + ' is created.');
@@ -35,12 +36,20 @@ var B = createComponent('B');
 var C = createComponent('C');
 var D = createComponent('D');
 
-var Wrapper = React.createClass({
-  propTypes: {
-    shape: React.PropTypes.string.isRequired
-  },
+class Wrapper extends Component {
 
-  shape1: function() {
+  constructor(props) {
+    super(props)
+    this.state = {
+      shape: '',
+    }
+  }
+
+  componentDidUpdate() {
+    console.log('=============')
+  }
+
+  shape1 = function() {
     return (
       <Root>
         <A>
@@ -50,9 +59,9 @@ var Wrapper = React.createClass({
         <D />
       </Root>
     );
-  },
+  }
 
-  shape2: function() {
+  shape2 = function() {
     return (
       <Root>
         <A>
@@ -63,9 +72,9 @@ var Wrapper = React.createClass({
         </D>
       </Root>
     );
-  },
+  }
 
-  shape3: function() {
+  shape3 = function() {
     return (
       <Root>
         <A>
@@ -76,9 +85,9 @@ var Wrapper = React.createClass({
         <D />
       </Root>
     );
-  },
+  }
 
-  shape4: function() {
+  shape4 = function() {
     return (
       <Root>
         <A>
@@ -89,9 +98,9 @@ var Wrapper = React.createClass({
         </A>
       </Root>
     );
-  },
+  }
 
-  shape5: function() {
+  shape5 = () => {
     return (
       <Root>
         <A>
@@ -100,9 +109,9 @@ var Wrapper = React.createClass({
         </A>
       </Root>
     );
-  },
+  }
 
-  shape6: function() {
+  shape6 = () => {
     return (
       <Root>
         <A>
@@ -111,15 +120,34 @@ var Wrapper = React.createClass({
         </A>
       </Root>
     );
-  },
+  }
 
-  render: function() {
-    if (this[this.props.shape]) {
-      return this[this.props.shape]();
+  setShape(shape) {
+    this.setState({ shape })
+  }
+
+  renderRoot() {
+    if (this[this.state.shape]) {
+      return this[this.state.shape]();
     } else {
       return <Root />;
     }
   }
-});
+
+  render() {
+    return (
+      <div>
+        <button onClick={() => this.setShape('shape1')}>Shape 1</button>
+        <button onClick={() => this.setShape('shape2')}>Shape 2</button>
+        <button onClick={() => this.setShape('shape3')}>Shape 3</button>
+        <button onClick={() => this.setShape('shape4')}>Shape 4</button>
+        <button onClick={() => this.setShape('shape5')}>Shape 5</button>
+        <button onClick={() => this.setShape('shape6')}>Shape 6</button>
+        <button onClick={() => this.setShape('')}>Clear</button>
+        {this.renderRoot()}
+      </div>
+    )
+  }
+}
 
 export default Wrapper;
