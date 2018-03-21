@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 import './styles.less';
 
 const classPrefix = 'download';
@@ -7,7 +7,7 @@ const sampleImg = require('../../images/phone_sample.png');
 const qrcodeImg = require('../../images/qrcode.png');
 
 // TODO 抽象出一个 DownloadButton 组件
-class Download extends PureComponent<> {
+class Download extends React.PureComponent {
   render() {
     return (
       <div className={`${classPrefix}`}>
@@ -27,13 +27,13 @@ class Download extends PureComponent<> {
               <ul>
                 <li className="link f-display-flex f-flex-justify-center f-flex-align-center">
                   <a>
-                    <i className="icon"></i>
+                    <i className="icon" />
                     <span>iOS 版</span>
                   </a>
                 </li>
                 <li className="link f-display-flex f-flex-justify-center f-flex-align-center">
                   <a>
-                    <i className="icon"></i>
+                    <i className="icon" />
                     <span>Android 版</span>
                   </a>
                 </li>

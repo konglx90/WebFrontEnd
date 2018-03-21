@@ -2,7 +2,7 @@ import * as React from 'react';
 import './App.less';
 import EventHandlerTryCatch from './ReactFeatureTest/EventHandlerTryCatch';
 
-import { NavBar, Download } from './components';
+import { NavBar, Download, Footer } from './components';
 
 class App extends React.Component<{}> {
 
@@ -20,6 +20,7 @@ class App extends React.Component<{}> {
       <div className="App">
         <NavBar curLink={'download'} />
         <Download />
+        <Footer />
       </div>
     );
   }
