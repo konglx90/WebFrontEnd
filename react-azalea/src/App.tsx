@@ -18,9 +18,16 @@ class App extends React.Component<{}> {
 
     return (
       <div className="App">
-        <NavBar curLink={'download'} />
-        <Download />
-        <Footer />
+        <header>
+          <NavBar curLink={'download'} />
+          <Download />
+        </header>
+        <main>
+          lll
+        </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }
