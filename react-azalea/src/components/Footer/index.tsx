@@ -20,9 +20,12 @@ class Footer extends React.PureComponent {
     return (
       <div className="footer">
         <div className="container-fixed-width">
-          <p className="info">{firstLine}</p>
-          <p className="info">{secondLine}</p>
-          <p className="info">{thirdLine}</p>
+          <div className="info-wrap">
+            <p className="info">{firstLine}</p>
+            <p className="info">{secondLine}</p>
+            <p className="info">{thirdLine}</p>
+            <p>© 2018 知乎</p>
+          </div>
         </div>
       </div>
     );

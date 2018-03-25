@@ -545,3 +545,58 @@ catch (err) {
 // 还蛮有趣的
 
 ```
+
+
+### functional router nav in react router
+
+```js
+
+const end = (str) => str[str.length-1];
+
+const withHistory = (urlPrefix = '/', history) => {
+    if (!history.push) throw new Error('need react router history');
+    if (end(str) !== '/')  throw new Error('urlPrefix need end by /');
+
+    return (wrappedFunc) => {
+        return (...arg) => {
+            const locationSearch = window.location.search;
+            const url = `${urlPrefix}${wrappedFunc(...arg)}/${locationSearch}`
+            history.push(url);
+            // sendPV();
+            // something else
+        };
+    };
+};
+
+// use
+import React, { PureComponent } from 'react';
+import { withRouter } from 'react-router';
+
+const URL_PREFIX = '/bj/nangua/';
+
+// define path
+const createCommentInputPath = rentUnitId => `comment/${rentUnitId}/input`;
+
+class CommentCard extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+    handleClick = () => {
+        this.goCommentInput('9090909090');
+    }
+
+    // About router
+    withHistory = withHistory(URL_PREFIX, this.props.history)
+    goCommentInput = this.withHistory(createCommentInputPath);
+
+    render() {
+        return (
+            <div onClick={this.handleClick}>comment</div>
+        );
+    }
+}
+export default withRouter(CommentCard);
+
+
+```
