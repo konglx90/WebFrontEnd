@@ -423,6 +423,11 @@ const generateCacheApi = (engine, key, defaultExpire = 7 * 24 * 3600 * 1000) => 
             if (!res) {
                 return null;
             }
+
+            if (expire === null) {
+                return data;
+            }
+
             let { data, time, expire} = JSON.parse(res);
             const now = new Date().getTime();
             if (now - time > expire) {
@@ -599,4 +604,35 @@ class CommentCard extends PureComponent {
 export default withRouter(CommentCard);
 
 
+```
+
+### anmite for scroll
+
+```js
+const rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(callback) {
+    setTimeout(callback, 17);
+};
+
+function animateScrollTop(srcY, destY, duration, callback) {
+    const stepY = (destY - srcY) / (duration / 17);
+    let endY = srcY;
+
+    function moving() {
+        endY = endY + stepY;
+        endY = endY > destY ? destY : endY;
+        window.scrollTo(0, endY);
+
+        // 达到终点
+        if (endY === destY) {
+            if (typeof callback === 'function') {
+                callback();
+            }
+            return;
+        }
+
+        rAF(moving);
+    }
+
+    moving();
+}
 ```
