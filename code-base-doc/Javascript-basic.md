@@ -64,3 +64,37 @@ const removeItem = (arr, item) => {
 const includes = (arr, value) => arr.indexOf(value) > -1;
 
 ```
+
+### Hash maps without side effects
+
+```js
+const map = Object.create(null);
+```
+
+<details>
+<summary>Examples</summary>
+
+
+```js
+const dirtyMap = {};
+const cleanMap = Object.create(null);
+
+dirtyMap.constructor    // function Object() { [native code] }
+
+cleanMap.constructor    // undefined
+
+// Iterating maps
+
+const key;
+for(key in dirtyMap){
+  if (dirtyMap.hasOwnProperty(key)) {   // Check to avoid iterating over inherited properties.
+    console.log(key + " -> " + dirtyMap[key]);
+  }
+}
+
+for(key in cleanMap){
+  console.log(key + " -> " + cleanMap[key]);    // No need to add extra checks, as the object will always be clean
+}
+```
+
+</details>
